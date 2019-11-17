@@ -1,0 +1,38 @@
+
+public class Vertex {
+	private String name;
+	private boolean visited = false;
+	private int color;
+	int WHITE = 1;
+	int GREEN = 2;
+	int BLACK = 3;
+	
+
+	public Vertex(String string) {
+		this.name = string;	
+	}
+
+	public String getName() {
+		return name;
+	}
+	
+	public int getColor() {
+		return color;
+	}
+	
+	public void setColor(int colorIn) {
+		color = colorIn;
+	}
+	
+	public boolean isVisisted() {
+		return visited;	
+	}
+	
+	public void setVisited(boolean visitedIn) {
+		visited = visitedIn;
+	}
+	
+	public String toString() {
+		return this.getName();	
+	}
+}

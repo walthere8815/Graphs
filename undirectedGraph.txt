@@ -1,0 +1,127 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
+public class UndirectedGraph {
+
+	
+	
+	Queue<Vertex> Q;
+	
+	UndirectedGraph(LinkedList<Vertex> listOfVertices1) {
+		LinkedList<Vertex> listOfVertices = new LinkedList<Vertex>(listOfVertices1);
+		HashMap<String, LinkedList<Vertex>> vertices = new HashMap<String, LinkedList<Vertex>>();
+		
+		//vertices.put(listOfVertices, value)
+		//int counter = 0;
+		//for (Vertex vertex : listOfVertices) {
+			
+		//	vertices.put(listOfVertices.get(counter).getName(), listOfVertices.get(counter));
+		//}
+		
+		//make graph G
+	}
+	
+	
+	public boolean addEdge(Vertex u, Vertex v) {
+		vertices.get(u).add(v);
+		vertices.get(v).add(u);
+		
+		return true;
+	}
+	
+	//Traverses a graph using the breadth first methodology
+	//Input: A Graph G that is a connected and undirected graph. //Vertex start is the vertex to start the traversal.
+	//Output: Graph tree that represents the breadth first search tree traversal
+	public UndirectedGraph breadthFirstSearch(Vertex start) {
+		//Initialize vertices, mark as white
+		
+		//Create graph T using all vertices from G
+		
+		//Q = {Start}, insert vertex u
+		Queue<Vertex> Q = new LinkedList<Vertex>();
+		
+		
+		//while Q not empty
+		while (Q.size() != 0){
+			
+			//u = dequeue Q
+			
+			//for each v thats in u -> adjancet 
+			//for() {
+				
+				//if v -> color == white
+				//if() {
+					
+					//v-> color = green
+					//enqueue to Q vertex v
+					//tree T add edge(u,v)
+				}
+			}
+			//u-> color = black
+		}
+		
+		return null;
+		
+	}
+	
+	//Traverses a graph using the breadth first methodology
+	//Input: A Graph G that is a connected and undirected graph. //Vertex start is the vertex to start the traversal.
+	//Output: Graph tree that represents the depth first search tree traversal.
+	public UndirectedGraph depthFirstSearch(Vertex start) {
+		//create Stack S
+		Stack<Vertex> S = new Stack<Vertex>();
+		
+		//create ArrayList<Vertex> visited to store order of visited vertices
+		ArrayList<Vertex> visited = new ArrayList<Vertex>();
+		
+		//create HashMap<Vertex, Vertex> predecessor to store predecessor as value.
+		HashMap<Vertex, Vertex> predecessor = new HashMap<Vertex, Vertex>();
+		
+		//initialize each vertex u in the graph, set visited false
+		int count = 0;
+		while()
+		
+		//push onto S Vertex start
+		S.push(start);
+		
+		//while S is not empty 
+		while (S.isEmpty()== false) {
+			//u:=pop S
+			
+			//if not visited u then
+			if() {
+				
+			
+				//set visied u = true
+				
+				//for each unvisisted neighbor w of u do
+				for() {
+					
+				
+					//push onto S vertex w
+					//put w as key and u as value predecessor Hashmap
+				}
+			}
+		}
+		
+		//create undriected graph tree
+		//for each vertex v stored in visited 
+		for() {
+			//if predecessor contains key for v
+			if() {
+				//get vertex u from predecessor
+				//add adge (u,v) to tree
+			}
+		}
+		return null;
+		
+	}
+	
+	public String toString() {
+		return null;
+		
+	}
+}
