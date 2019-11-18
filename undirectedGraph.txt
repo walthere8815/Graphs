@@ -1,78 +1,90 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Queue;
 import java.util.Stack;
 
 public class UndirectedGraph {
-
-	
 	
 	Queue<Vertex> Q;
+	HashMap<String, LinkedList<Vertex>> vertices = new HashMap<String, LinkedList<Vertex>>();
+	LinkedList<Vertex> listOfVertices = new LinkedList<Vertex>();
 	
-	UndirectedGraph(LinkedList<Vertex> listOfVertices1) {
-		LinkedList<Vertex> listOfVertices = new LinkedList<Vertex>(listOfVertices1);
-		HashMap<String, LinkedList<Vertex>> vertices = new HashMap<String, LinkedList<Vertex>>();
+	UndirectedGraph(LinkedList<Vertex> listOfVertices) {
+		 this.listOfVertices =  listOfVertices;
 		
-		//vertices.put(listOfVertices, value)
-		//int counter = 0;
-		//for (Vertex vertex : listOfVertices) {
-			
-		//	vertices.put(listOfVertices.get(counter).getName(), listOfVertices.get(counter));
-		//}
-		
-		//make graph G
+		 for(int count=0; count<listOfVertices.size(); count++) {
+			 vertices.put(listOfVertices.get(count).getName(),new LinkedList<Vertex>()); 
+		 }
+		  
 	}
 	
 	
 	public boolean addEdge(Vertex u, Vertex v) {
-		vertices.get(u).add(v);
-		vertices.get(v).add(u);
+		
+		vertices.get(u.getName()).add(v);
+		vertices.get(v.getName()).add(u);
 		
 		return true;
 	}
 	
 	//Traverses a graph using the breadth first methodology
-	//Input: A Graph G that is a connected and undirected graph. //Vertex start is the vertex to start the traversal.
+	//Input: A Graph G that is a connected and undirected graph.
+	//Vertex start is the vertex to start the traversal.
 	//Output: Graph tree that represents the breadth first search tree traversal
-	public UndirectedGraph breadthFirstSearch(Vertex start) {
-		//Initialize vertices, mark as white
+	public UndirectedGraph breadthFirstSearch(UndirectedGraph G,Vertex start) {
+		// Initialize vertices, mark as white
+		
+		for(int count=0; count<listOfVertices.size(); count++) {
+			listOfVertices.get(count).setColor(1);
+		 }
+		
+		Vertex u;
 		
 		//Create graph T using all vertices from G
+		UndirectedGraph T = new UndirectedGraph(G.listOfVertices);
 		
 		//Q = {Start}, insert vertex u
-		Queue<Vertex> Q = new LinkedList<Vertex>();
-		
+		 Q = new LinkedList<Vertex>();
+		 Q.add(start);
 		
 		//while Q not empty
 		while (Q.size() != 0){
 			
 			//u = dequeue Q
+			u = Q.remove();
 			
 			//for each v thats in u -> adjancet 
-			//for() {
-				
+			for(int count =0; count < Q.size() ; count++) {
+				Vertex v = Q.peek();
 				//if v -> color == white
-				//if() {
+				if(v.getColor() == 1) {
 					
 					//v-> color = green
+					v.setColor(2);
+					
 					//enqueue to Q vertex v
+					Q.add(v);
 					//tree T add edge(u,v)
+					T.addEdge(u,v);
 				}
 			}
 			//u-> color = black
+			u.setColor(3);
 		}
 		
-		return null;
+		return T;
 		
 	}
 	
 	//Traverses a graph using the breadth first methodology
-	//Input: A Graph G that is a connected and undirected graph. //Vertex start is the vertex to start the traversal.
+	//Input: A Graph G that is a connected and undirected graph. 
+	//Vertex start is the vertex to start the traversal.
 	//Output: Graph tree that represents the depth first search tree traversal.
 	public UndirectedGraph depthFirstSearch(Vertex start) {
 		//create Stack S
-		Stack<Vertex> S = new Stack<Vertex>();
+		LinkedList<Vertex> S = new LinkedList<Vertex>();
 		
 		//create ArrayList<Vertex> visited to store order of visited vertices
 		ArrayList<Vertex> visited = new ArrayList<Vertex>();
@@ -80,9 +92,15 @@ public class UndirectedGraph {
 		//create HashMap<Vertex, Vertex> predecessor to store predecessor as value.
 		HashMap<Vertex, Vertex> predecessor = new HashMap<Vertex, Vertex>();
 		
+		Vertex w = new Vertex(null);
+		
 		//initialize each vertex u in the graph, set visited false
-		int count = 0;
-		while()
+		Vertex u = new Vertex(null);
+		for(int count=0; count<listOfVertices.size(); count++) {
+			u = listOfVertices.get(count);
+			u.setColor(1);
+			u.setVisited(false);
+		 }
 		
 		//push onto S Vertex start
 		S.push(start);
@@ -90,38 +108,50 @@ public class UndirectedGraph {
 		//while S is not empty 
 		while (S.isEmpty()== false) {
 			//u:=pop S
-			
+			u = S.pop();
 			//if not visited u then
-			if() {
-				
-			
-				//set visied u = true
-				
-				//for each unvisisted neighbor w of u do
-				for() {
-					
-				
-					//push onto S vertex w
-					//put w as key and u as value predecessor Hashmap
-				}
-			}
-		}
+			if(u.isVisisted() == false) {
+				u.setVisited(true);
 		
-		//create undriected graph tree
+				
+				//TODO for each unvisisted neighbor w of u do
+				for(int count =0; count <100;count++) {
+					//TODO push onto S vertex w
+					
+					//S.push();
+					//put w as key and u as value predecessor Hashmap
+					predecessor.put(w, u);
+				}
+				
+			}
+					
+		}	
+		
+	
+		
+		//create undirected graph tree
+		UndirectedGraph graph = new UndirectedGraph(S);
+		
 		//for each vertex v stored in visited 
-		for() {
-			//if predecessor contains key for v
-			if() {
+		for(int count =0; count <visited.size(); count++) {
+			Vertex v = visited.get(count);
+			//TODO if predecessor contains key for v
+			if(predecessor.containsKey(v)) {
 				//get vertex u from predecessor
-				//add adge (u,v) to tree
+				u=predecessor.get(u);
+				//add edge (u,v) to tree
+				graph.addEdge(u,v);
 			}
 		}
-		return null;
+		return graph;
 		
 	}
 	
+	//TODO
 	public String toString() {
-		return null;
+		System.out.println("Adjacency list for graph:  ")	;
+		
+		return vertices.toString();
 		
 	}
 }
