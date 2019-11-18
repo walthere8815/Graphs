@@ -56,7 +56,7 @@ public class UndirectedGraph {
 			u = Q.remove();
 			
 			//for each v thats in u -> adjancet 
-			for(int count =0; count < Q.size() ; count++) {
+			for(int count = 0; count < Q.size(); count++) {
 				Vertex v = Q.peek();
 				//if v -> color == white
 				if(v.getColor() == 1) {
@@ -73,7 +73,7 @@ public class UndirectedGraph {
 			//u-> color = black
 			u.setColor(3);
 		}
-		
+		System.out.println("Before the fall" +T);
 		return T;
 		
 	}
@@ -115,10 +115,10 @@ public class UndirectedGraph {
 		
 				
 				//TODO for each unvisisted neighbor w of u do
-				for(int count =0; count <100;count++) {
+				for(int count =0; count <S.size();count++) {
 					//TODO push onto S vertex w
 					
-					//S.push();
+					S.push(w);
 					//put w as key and u as value predecessor Hashmap
 					predecessor.put(w, u);
 				}
